@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Location Changer</string>
+
+    <!-- Language screen -->
+    <string name="choose_language">Choose language</string>
+    <string name="lang_english">English</string>
+    <string name="lang_punjabi">ਪੰਜਾਬੀ</string>
+
+    <!-- Status card -->
+    <string name="status_active">Location changed to: %1$s</string>
+    <string name="status_inactive">Using your real location</string>
+
+    <!-- Search -->
+    <string name="search_hint">Type a place name (city, village, area)</string>
+    <string name="search_button">Search</string>
+    <string name="searching">Searching…</string>
+    <string name="no_results">No places found. Try a different name.</string>
+    <string name="search_failed">Could not search right now. Please check your internet.</string>
+
+    <!-- Map -->
+    <string name="zoom_in">Zoom in</string>
+    <string name="zoom_out">Zoom out</string>
+    <string name="my_real_location">My real location</string>
+    <string name="selected_place_fallback">Selected place</string>
+    <string name="finding_place_name">Finding place name…</string>
+
+    <!-- Main / secondary buttons -->
+    <string name="change_here">Change location here</string>
+    <string name="stop_go_back">Stop – go back to real location</string>
+    <string name="tap_map_first">First tap on the map to choose a place</string>
+    <string name="save_place">Save this place</string>
+
+    <!-- Save dialog -->
+    <string name="save_dialog_title">Save this place</string>
+    <string name="name_label">Name</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Saved places -->
+    <string name="saved_places_title">My saved places</string>
+    <string name="no_saved_places">You have not saved any places yet.</string>
+    <string name="delete">Delete</string>
+    <string name="delete_confirm_title">Delete this place?</string>
+    <string name="delete_confirm_message">Delete \"%1$s\"?</string>
+    <string name="yes_delete">Yes, delete</string>
+    <string name="no">No</string>
+
+    <!-- Feedback messages -->
+    <string name="msg_changed">Done. Your location is now the chosen place.</string>
+    <string name="msg_back_to_real">Back to your real location. It may take a few seconds to update.</string>
+    <string name="msg_error">Something went wrong. Please try again.</string>
+    <string name="msg_no_internet">No internet. The map and search need internet. Your saved places still work.</string>
+
+    <!-- Location off -->
+    <string name="location_off_title">Location is turned off</string>
+    <string name="location_off_message">Please turn on location on your phone.</string>
+    <string name="open_location_settings">Open location settings</string>
+
+    <!-- Location permission -->
+    <string name="need_location_permission">This app needs permission to use location.</string>
+    <string name="allow">Allow</string>
+
+    <!-- Battery optimization -->
+    <string name="battery_title">Keep the app running</string>
+    <string name="battery_message">Allow the app to keep running so your location stays changed.</string>
+    <string name="later">Later</string>
+
+    <!-- Help -->
+    <string name="help">Help</string>
+    <string name="help_title">How to use</string>
+    <string name="help_step1">1. Find a place: type its name and tap Search, or tap the map.</string>
+    <string name="help_step2">2. A pin shows the place you chose.</string>
+    <string name="help_step3">3. Tap the green button "Change location here".</string>
+    <string name="help_step4">4. Your phone now shows that place to other apps.</string>
+    <string name="help_step5">5. To go back, tap the red button "Stop – go back to real location".</string>
+    <string name="close">Close</string>
+
+    <!-- Notification -->
+    <string name="notif_channel_name">Location changed</string>
+    <string name="notif_title">Location changed</string>
+    <string name="notif_stop">Stop</string>
+
+    <!-- Setup screen (for the installer; English only on purpose) -->
+    <string name="setup_title" translatable="false">Setup needed (one-time)</string>
+    <string name="setup_intro" translatable="false">This screen is for the person installing the app, not the daily user. Run these two commands once with the phone connected to a computer (USB debugging on). After they succeed, tap "Check again" and this screen will not appear again.</string>
+    <string name="setup_cmd1" translatable="false">adb shell pm grant com.gurnoor.locationchanger android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="setup_cmd2" translatable="false">adb shell appops set com.gurnoor.locationchanger android:mock_location allow</string>
+    <string name="setup_check_again" translatable="false">Check again</string>
+    <string name="setup_copy" translatable="false">Copy</string>
+    <string name="setup_copied" translatable="false">Copied</string>
+    <string name="setup_status_write" translatable="false">Secure-settings permission</string>
+    <string name="setup_status_mock" translatable="false">Mock location allowed</string>
+    <string name="setup_granted" translatable="false">Done</string>
+    <string name="setup_missing" translatable="false">Not yet</string>
+    <string name="setup_samsung" translatable="false">On Samsung (One UI): also add this app to Settings → Battery → Background usage limits → Never sleeping apps, so the system does not stop it.</string>
+</resources>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ਲੋਕੇਸ਼ਨ ਬਦਲੋ</string>
+
+    <!-- Language screen -->
+    <string name="choose_language">ਭਾਸ਼ਾ ਚੁਣੋ</string>
+    <string name="lang_english">English</string>
+    <string name="lang_punjabi">ਪੰਜਾਬੀ</string>
+
+    <!-- Status card -->
+    <string name="status_active">ਹੁਣ ਤੁਹਾਡੀ ਲੋਕੇਸ਼ਨ: %1$s</string>
+    <string name="status_inactive">ਤੁਹਾਡੀ ਅਸਲੀ ਲੋਕੇਸ਼ਨ ਵਰਤੀ ਜਾ ਰਹੀ ਹੈ</string>
+
+    <!-- Search -->
+    <string name="search_hint">ਜਗ੍ਹਾ ਦਾ ਨਾਂ ਲਿਖੋ (ਸ਼ਹਿਰ, ਪਿੰਡ, ਇਲਾਕਾ)</string>
+    <string name="search_button">ਲੱਭੋ</string>
+    <string name="searching">ਲੱਭ ਰਹੇ ਹਾਂ…</string>
+    <string name="no_results">ਕੋਈ ਜਗ੍ਹਾ ਨਹੀਂ ਮਿਲੀ। ਕੋਈ ਹੋਰ ਨਾਂ ਲਿਖ ਕੇ ਵੇਖੋ।</string>
+    <string name="search_failed">ਹੁਣੇ ਲੱਭ ਨਹੀਂ ਸਕੇ। ਆਪਣਾ ਇੰਟਰਨੈੱਟ ਚੈੱਕ ਕਰੋ।</string>
+
+    <!-- Map -->
+    <string name="zoom_in">ਨੇੜੇ ਕਰੋ</string>
+    <string name="zoom_out">ਦੂਰ ਕਰੋ</string>
+    <string name="my_real_location">ਮੇਰੀ ਅਸਲੀ ਲੋਕੇਸ਼ਨ</string>
+    <string name="selected_place_fallback">ਚੁਣੀ ਹੋਈ ਜਗ੍ਹਾ</string>
+    <string name="finding_place_name">ਜਗ੍ਹਾ ਦਾ ਨਾਂ ਲੱਭ ਰਹੇ ਹਾਂ…</string>
+
+    <!-- Main / secondary buttons -->
+    <string name="change_here">ਇੱਥੇ ਲੋਕੇਸ਼ਨ ਬਦਲੋ</string>
+    <string name="stop_go_back">ਬੰਦ ਕਰੋ – ਅਸਲੀ ਲੋਕੇਸ਼ਨ ਤੇ ਵਾਪਸ</string>
+    <string name="tap_map_first">ਪਹਿਲਾਂ ਨਕਸ਼ੇ ਤੇ ਛੋਹ ਕੇ ਜਗ੍ਹਾ ਚੁਣੋ</string>
+    <string name="save_place">ਇਹ ਜਗ੍ਹਾ ਸੰਭਾਲੋ</string>
+
+    <!-- Save dialog -->
+    <string name="save_dialog_title">ਇਹ ਜਗ੍ਹਾ ਸੰਭਾਲੋ</string>
+    <string name="name_label">ਨਾਂ</string>
+    <string name="save">ਸੰਭਾਲੋ</string>
+    <string name="cancel">ਰਹਿਣ ਦਿਓ</string>
+
+    <!-- Saved places -->
+    <string name="saved_places_title">ਮੇਰੀਆਂ ਸੰਭਾਲੀਆਂ ਜਗ੍ਹਾਵਾਂ</string>
+    <string name="no_saved_places">ਤੁਸੀਂ ਹਾਲੇ ਕੋਈ ਜਗ੍ਹਾ ਨਹੀਂ ਸੰਭਾਲੀ।</string>
+    <string name="delete">ਹਟਾਓ</string>
+    <string name="delete_confirm_title">ਇਹ ਜਗ੍ਹਾ ਹਟਾਉਣੀ ਹੈ?</string>
+    <string name="delete_confirm_message">\"%1$s\" ਹਟਾਉਣੀ ਹੈ?</string>
+    <string name="yes_delete">ਹਾਂ, ਹਟਾਓ</string>
+    <string name="no">ਨਹੀਂ</string>
+
+    <!-- Feedback messages -->
+    <string name="msg_changed">ਹੋ ਗਿਆ। ਹੁਣ ਤੁਹਾਡੀ ਲੋਕੇਸ਼ਨ ਚੁਣੀ ਹੋਈ ਜਗ੍ਹਾ ਹੈ।</string>
+    <string name="msg_back_to_real">ਤੁਹਾਡੀ ਅਸਲੀ ਲੋਕੇਸ਼ਨ ਤੇ ਵਾਪਸ। ਅੱਪਡੇਟ ਹੋਣ ਵਿੱਚ ਕੁਝ ਸਕਿੰਟ ਲੱਗ ਸਕਦੇ ਹਨ।</string>
+    <string name="msg_error">ਕੁਝ ਗੜਬੜ ਹੋ ਗਈ। ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।</string>
+    <string name="msg_no_internet">ਇੰਟਰਨੈੱਟ ਨਹੀਂ ਹੈ। ਨਕਸ਼ੇ ਅਤੇ ਲੱਭਣ ਲਈ ਇੰਟਰਨੈੱਟ ਚਾਹੀਦਾ ਹੈ। ਸੰਭਾਲੀਆਂ ਜਗ੍ਹਾਵਾਂ ਫਿਰ ਵੀ ਚੱਲਣਗੀਆਂ।</string>
+
+    <!-- Location off -->
+    <string name="location_off_title">ਫ਼ੋਨ ਦੀ ਲੋਕੇਸ਼ਨ ਬੰਦ ਹੈ</string>
+    <string name="location_off_message">ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਫ਼ੋਨ ਦੀ ਲੋਕੇਸ਼ਨ ਚਾਲੂ ਕਰੋ।</string>
+    <string name="open_location_settings">ਲੋਕੇਸ਼ਨ ਸੈਟਿੰਗ ਖੋਲ੍ਹੋ</string>
+
+    <!-- Location permission -->
+    <string name="need_location_permission">ਇਸ ਐਪ ਨੂੰ ਲੋਕੇਸ਼ਨ ਵਰਤਣ ਦੀ ਇਜਾਜ਼ਤ ਚਾਹੀਦੀ ਹੈ।</string>
+    <string name="allow">ਇਜਾਜ਼ਤ ਦਿਓ</string>
+
+    <!-- Battery optimization -->
+    <string name="battery_title">ਐਪ ਨੂੰ ਚੱਲਦਾ ਰੱਖੋ</string>
+    <string name="battery_message">ਐਪ ਨੂੰ ਚੱਲਦਾ ਰਹਿਣ ਦਿਓ ਤਾਂ ਜੋ ਤੁਹਾਡੀ ਬਦਲੀ ਹੋਈ ਲੋਕੇਸ਼ਨ ਟਿਕੀ ਰਹੇ।</string>
+    <string name="later">ਬਾਅਦ ਵਿੱਚ</string>
+
+    <!-- Help -->
+    <string name="help">ਮਦਦ</string>
+    <string name="help_title">ਕਿਵੇਂ ਵਰਤਣਾ ਹੈ</string>
+    <string name="help_step1">1. ਜਗ੍ਹਾ ਲੱਭੋ: ਨਾਂ ਲਿਖ ਕੇ ਲੱਭੋ ਦਬਾਓ, ਜਾਂ ਨਕਸ਼ੇ ਤੇ ਛੋਹੋ।</string>
+    <string name="help_step2">2. ਪਿੰਨ ਤੁਹਾਡੀ ਚੁਣੀ ਹੋਈ ਜਗ੍ਹਾ ਦੱਸਦਾ ਹੈ।</string>
+    <string name="help_step3">3. ਹਰੇ ਬਟਨ "ਇੱਥੇ ਲੋਕੇਸ਼ਨ ਬਦਲੋ" ਨੂੰ ਦਬਾਓ।</string>
+    <string name="help_step4">4. ਹੁਣ ਤੁਹਾਡਾ ਫ਼ੋਨ ਬਾਕੀ ਐਪਾਂ ਨੂੰ ਇਹੀ ਜਗ੍ਹਾ ਦੱਸੇਗਾ।</string>
+    <string name="help_step5">5. ਵਾਪਸ ਜਾਣ ਲਈ ਲਾਲ ਬਟਨ "ਬੰਦ ਕਰੋ – ਅਸਲੀ ਲੋਕੇਸ਼ਨ ਤੇ ਵਾਪਸ" ਦਬਾਓ।</string>
+    <string name="close">ਬੰਦ ਕਰੋ</string>
+
+    <!-- Notification -->
+    <string name="notif_channel_name">ਲੋਕੇਸ਼ਨ ਬਦਲੀ ਹੋਈ</string>
+    <string name="notif_title">ਲੋਕੇਸ਼ਨ ਬਦਲੀ ਹੋਈ ਹੈ</string>
+    <string name="notif_stop">ਬੰਦ ਕਰੋ</string>
+</resources>
