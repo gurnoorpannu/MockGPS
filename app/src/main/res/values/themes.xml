@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.LocationChanger" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- Base theme for the Activity window only; all real UI is Compose Material 3. -->
+    <style name="Theme.LocationChanger" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/ic_launcher_background</item>
         <item name="android:windowLightStatusBar">false</item>
     </style>
