@@ -12,7 +12,7 @@
     <string name="status_inactive">ਤੁਹਾਡੀ ਅਸਲੀ ਲੋਕੇਸ਼ਨ ਵਰਤੀ ਜਾ ਰਹੀ ਹੈ</string>
 
     <!-- Search -->
-    <string name="search_hint">ਜਗ੍ਹਾ ਦਾ ਨਾਂ ਲਿਖੋ (ਸ਼ਹਿਰ, ਪਿੰਡ, ਇਲਾਕਾ)</string>
+    <string name="search_hint">ਜਗ੍ਹਾ ਲੱਭੋ</string>
     <string name="search_button">ਲੱਭੋ</string>
     <string name="searching">ਲੱਭ ਰਹੇ ਹਾਂ…</string>
     <string name="no_results">ਕੋਈ ਜਗ੍ਹਾ ਨਹੀਂ ਮਿਲੀ। ਕੋਈ ਹੋਰ ਨਾਂ ਲਿਖ ਕੇ ਵੇਖੋ।</string>
@@ -80,4 +80,8 @@
     <string name="notif_channel_name">ਲੋਕੇਸ਼ਨ ਬਦਲੀ ਹੋਈ</string>
     <string name="notif_title">ਲੋਕੇਸ਼ਨ ਬਦਲੀ ਹੋਈ ਹੈ</string>
     <string name="notif_stop">ਬੰਦ ਕਰੋ</string>
+    <string name="saved_short">ਸੰਭਾਲੀਆਂ</string>
+    <string name="set_hint">ਨਕਸ਼ਾ ਹਿਲਾ ਕੇ ਜਗ੍ਹਾ ਚੁਣੋ</string>
+    <string name="change_short">ਬਦਲੋ</string>
+    <string name="stop_short">ਬੰਦ</string>
 </resources>

@@ -24,6 +24,7 @@ import com.gurnoor.locationchanger.system.DevOptionsController
 import com.gurnoor.locationchanger.system.SetupChecker
 import com.gurnoor.locationchanger.system.SetupStatus
 import com.gurnoor.locationchanger.system.isLocationServiceEnabled
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -111,21 +112,23 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
 
     private fun currentLang() = _ui.value.language ?: LocaleManager.current()
 
-    fun onMapTap(lat: Double, lon: Double) {
-        val placeholder = getApplication<Application>().getString(R.string.selected_place_fallback)
-        _ui.update { it.copy(selected = SavedPlace(placeholder, lat, lon), searchResults = emptyList()) }
-        reverseGeocodeSelected(lat, lon)
-    }
+    private var reverseJob: kotlinx.coroutines.Job? = null
 
-    private fun reverseGeocodeSelected(lat: Double, lon: Double) {
-        viewModelScope.launch {
-            val name = runCatching { Nominatim.reverse(lat, lon, currentLang()) }.getOrNull()
-            if (name != null) {
-                _ui.update { state ->
-                    val sel = state.selected
-                    if (sel != null && sel.latitude == lat && sel.longitude == lon)
-                        state.copy(selected = sel.copy(name = name)) else state
-                }
+    /** The map centre moved (Google-Maps style). Update the selection and refine its name. */
+    fun onCenterChanged(lat: Double, lon: Double) {
+        val placeholder = getApplication<Application>().getString(R.string.selected_place_fallback)
+        _ui.update {
+            val keptName = it.selected?.name?.takeIf { n -> n != placeholder }
+            it.copy(selected = SavedPlace(keptName ?: placeholder, lat, lon))
+        }
+        reverseJob?.cancel()
+        reverseJob = viewModelScope.launch {
+            delay(350)
+            val name = runCatching { Nominatim.reverse(lat, lon, currentLang()) }.getOrNull() ?: return@launch
+            _ui.update { state ->
+                val sel = state.selected
+                if (sel != null && sel.latitude == lat && sel.longitude == lon)
+                    state.copy(selected = sel.copy(name = name)) else state
             }
         }
     }

@@ -12,7 +12,7 @@
     <string name="status_inactive">Using your real location</string>
 
     <!-- Search -->
-    <string name="search_hint">Type a place name (city, village, area)</string>
+    <string name="search_hint">Search a place</string>
     <string name="search_button">Search</string>
     <string name="searching">Searching…</string>
     <string name="no_results">No places found. Try a different name.</string>
@@ -94,4 +94,8 @@
     <string name="setup_granted" translatable="false">Done</string>
     <string name="setup_missing" translatable="false">Not yet</string>
     <string name="setup_samsung" translatable="false">On Samsung (One UI): also add this app to Settings → Battery → Background usage limits → Never sleeping apps, so the system does not stop it.</string>
+    <string name="saved_short">Saved</string>
+    <string name="set_hint">Move the map to pick a spot</string>
+    <string name="change_short">Change</string>
+    <string name="stop_short">Stop</string>
 </resources>

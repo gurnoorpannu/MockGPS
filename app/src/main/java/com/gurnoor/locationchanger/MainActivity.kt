@@ -113,7 +113,7 @@ private fun AppRoot() {
                 onHelp = { showHelp = true },
                 onSearch = vm::search,
                 onSelectResult = vm::selectResult,
-                onMapTap = vm::onMapTap,
+                onCenterChanged = vm::onCenterChanged,
                 onSelectSaved = vm::selectSaved,
                 onSavePlace = vm::savePlace,
                 onDeletePlace = vm::deletePlace,
