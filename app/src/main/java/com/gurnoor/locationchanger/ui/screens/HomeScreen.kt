@@ -129,9 +129,28 @@ fun HomeScreen(
                 .padding(top = 84.dp, end = 12.dp),
             verticalArrangement = Arrangement.spacedBy(10.dp),
         ) {
+            // Satellite (rooftops visible) <-> street map.
+            RoundControl(if (controller.satellite) "🗺" else "🛰") { controller.toggleSatellite() }
             RoundControl("+") { controller.zoomIn() }
             RoundControl("−") { controller.zoomOut() }
             RoundControl("◎") { realLocation()?.let { controller.moveTo(it.first, it.second) } }
+        }
+
+        // Required map credits (OpenStreetMap data, Esri imagery), kept small.
+        Surface(
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .statusBarsPadding()
+                .padding(top = 74.dp, start = 16.dp),
+            shape = RoundedCornerShape(6.dp),
+            color = Color.White.copy(alpha = 0.75f),
+        ) {
+            Text(
+                text = if (controller.satellite) "© OpenStreetMap · Esri, Maxar" else "© OpenStreetMap · OpenFreeMap",
+                fontSize = 10.sp,
+                color = Color.Black,
+                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp),
+            )
         }
 
         // Top: compact search bar + language pill, then results.

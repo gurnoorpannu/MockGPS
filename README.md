@@ -128,6 +128,15 @@ So One UI doesn't stop the background service:
   again.
 - The map and place search need internet. Saved places still work offline (you just won't see
   tiles or be able to search for new places).
+- **Satellite view** (on by default, 🗺/🛰 button to switch) uses Esri World Imagery, which is free
+  with no key but is meant for non-commercial / personal use with credit shown (the app shows it).
+  In rural Punjab it is sharp to house level at zoom 18; beyond that the app stretches the zoom-18
+  photo, because Esri has no closer imagery there. For a fully-licensed source, swap in Google Maps
+  or MapTiler (both need an API key).
+- **Developer options switch** in the app turns off Developer options *and* USB debugging together
+  (SBI YONO checks USB debugging). Don't use the switch inside the Settings app to turn Developer
+  options off — on Samsung that also wipes the mock-location permission and you'd need the
+  `appops` command again.
 - Mock location is only delivered to apps while the phone's own **Location** toggle is on; the app
   tells the user and offers a button to the location settings if it's off.
 
