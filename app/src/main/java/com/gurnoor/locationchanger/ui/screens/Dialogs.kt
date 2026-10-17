@@ -9,13 +9,16 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import com.gurnoor.locationchanger.ui.theme.StopRed
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.gurnoor.locationchanger.R
 import com.gurnoor.locationchanger.data.SavedPlace
 
@@ -65,10 +69,10 @@ fun SavedPlacesDialog(
 ) {
     AlertDialog(
         onDismissRequest = onClose,
-        title = { Text(stringResource(R.string.saved_places_title), style = MaterialTheme.typography.titleLarge) },
+        title = { Text(stringResource(R.string.saved_places_title), fontSize = 19.sp) },
         text = {
             if (places.isEmpty()) {
-                Text(stringResource(R.string.no_saved_places), style = MaterialTheme.typography.bodyLarge)
+                Text(stringResource(R.string.no_saved_places), fontSize = 16.sp)
             } else {
                 Column(
                     modifier = Modifier.heightIn(max = 380.dp).verticalScroll(rememberScrollState()),
@@ -83,14 +87,18 @@ fun SavedPlacesDialog(
                             ) {
                                 Text(
                                     text = place.name,
-                                    style = MaterialTheme.typography.titleMedium,
+                                    fontSize = 16.sp,
                                     modifier = Modifier
                                         .weight(1f)
                                         .clickable { onSelect(place) }
                                         .padding(vertical = 10.dp),
                                 )
-                                OutlinedButton(onClick = { onDelete(place) }) {
-                                    Text(stringResource(R.string.delete), style = MaterialTheme.typography.bodyMedium)
+                                OutlinedButton(
+                                    onClick = { onDelete(place) },
+                                    colors = ButtonDefaults.outlinedButtonColors(contentColor = StopRed),
+                                    border = BorderStroke(1.dp, StopRed),
+                                ) {
+                                    Text(stringResource(R.string.delete), fontSize = 14.sp)
                                 }
                             }
                         }
@@ -100,7 +108,7 @@ fun SavedPlacesDialog(
         },
         confirmButton = {
             OutlinedButton(onClick = onClose) {
-                Text(stringResource(R.string.close), style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.close), fontSize = 16.sp)
             }
         },
     )
