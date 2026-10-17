@@ -30,6 +30,8 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -69,8 +71,10 @@ private const val DEFAULT_ZOOM = 6.0
 fun HomeScreen(
     state: HomeUiState,
     onToggleLanguage: () -> Unit,
+    onToggleDevOptions: () -> Unit,
     onHelp: () -> Unit,
     onSearch: (String) -> Unit,
+    onQueryChanged: (String) -> Unit,
     onSelectResult: (GeoResult) -> Unit,
     onCenterChanged: (Double, Double) -> Unit,
     onSelectSaved: (SavedPlace) -> Unit,
@@ -117,6 +121,19 @@ fun HomeScreen(
                 .offset(y = (-22).dp),
         )
 
+        // Right-side controls.
+        Column(
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .statusBarsPadding()
+                .padding(top = 84.dp, end = 12.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
+            RoundControl("+") { controller.zoomIn() }
+            RoundControl("−") { controller.zoomOut() }
+            RoundControl("◎") { realLocation()?.let { controller.moveTo(it.first, it.second) } }
+        }
+
         // Top: compact search bar + language pill, then results.
         Column(
             modifier = Modifier
@@ -144,7 +161,7 @@ fun HomeScreen(
                         Spacer(Modifier.size(10.dp))
                         BasicTextField(
                             value = query,
-                            onValueChange = { query = it },
+                            onValueChange = { query = it; onQueryChanged(it) },
                             singleLine = true,
                             textStyle = androidx.compose.ui.text.TextStyle(
                                 fontSize = 17.sp,
@@ -202,7 +219,7 @@ fun HomeScreen(
                                 overflow = TextOverflow.Ellipsis,
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .clickable { keyboard?.hide(); onSelectResult(result) }
+                                    .clickable { keyboard?.hide(); query = ""; onSelectResult(result) }
                                     .padding(16.dp),
                             )
                         }
@@ -211,24 +228,13 @@ fun HomeScreen(
             }
         }
 
-        // Right-side controls.
-        Column(
-            modifier = Modifier
-                .align(Alignment.CenterEnd)
-                .padding(12.dp),
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-        ) {
-            RoundControl("+") { controller.zoomIn() }
-            RoundControl("−") { controller.zoomOut() }
-            RoundControl("◎") { realLocation()?.let { controller.moveTo(it.first, it.second) } }
-        }
-
         BottomCard(
             state = state,
             onChange = onChange,
             onStop = onStop,
             onSave = { showSaveDialog = true },
             onPlaces = { showPlaces = true },
+            onToggleDevOptions = onToggleDevOptions,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .navigationBarsPadding()
@@ -267,6 +273,7 @@ private fun BottomCard(
     onStop: () -> Unit,
     onSave: () -> Unit,
     onPlaces: () -> Unit,
+    onToggleDevOptions: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -307,6 +314,26 @@ private fun BottomCard(
             ) {
                 Chip(stringResource(R.string.save), onSave, Modifier.weight(1f), enabled = state.selected != null)
                 Chip(stringResource(R.string.saved_short), onPlaces, Modifier.weight(1f))
+            }
+
+            // Developer options + USB debugging switch (banking apps refuse to run while on).
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                Column(modifier = Modifier.weight(1f)) {
+                    Text(stringResource(R.string.dev_options_label), fontSize = 16.sp, fontWeight = FontWeight.Medium)
+                    Text(
+                        stringResource(R.string.dev_options_hint),
+                        fontSize = 13.sp,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    )
+                }
+                Switch(
+                    checked = state.devOptionsOn,
+                    onCheckedChange = { onToggleDevOptions() },
+                    colors = SwitchDefaults.colors(checkedTrackColor = StopRed),
+                )
             }
         }
     }

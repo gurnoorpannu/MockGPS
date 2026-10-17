@@ -45,6 +45,7 @@ data class HomeUiState(
     val needsSetup: Boolean = false,
     val locationOff: Boolean = false,
     val batteryAsked: Boolean = false,
+    val devOptionsOn: Boolean = false,
     // Bumped whenever the map should recenter on `selected` (screen reacts to the change).
     val moveToSelectedTick: Int = 0,
 )
@@ -97,6 +98,22 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
     fun refreshSetup() {
         val status = setupChecker.check()
         _ui.update { it.copy(setupStatus = status, needsSetup = !status.adbSetupComplete) }
+        refreshDevOptions()
+    }
+
+    fun refreshDevOptions() {
+        val on = runCatching { devOptions.isVisibleToOtherApps() }.getOrDefault(false)
+        _ui.update { it.copy(devOptionsOn = on) }
+    }
+
+    /** In-app switch for Developer options + USB debugging (banking apps check both). */
+    fun toggleDevOptions() {
+        val turnOn = !_ui.value.devOptionsOn
+        val ok = runCatching { devOptions.setEnabled(turnOn) }.isSuccess
+        if (!ok) _ui.update { it.copy(message = UiMessage(R.string.msg_error, isError = true)) }
+        // A manual choice wins: don't let the safety net think it still owns the setting.
+        viewModelScope.launch { settings.setWeEnabledDevOptions(false) }
+        refreshDevOptions()
     }
 
     fun chooseLanguage(tag: String) {
@@ -130,6 +147,25 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                 if (sel != null && sel.latitude == lat && sel.longitude == lon)
                     state.copy(selected = sel.copy(name = name)) else state
             }
+        }
+    }
+
+    private var typeAheadJob: kotlinx.coroutines.Job? = null
+
+    /** Live suggestions while typing: debounced, min 3 chars, polite to Nominatim's 1 req/s limit. */
+    fun onQueryChanged(query: String) {
+        typeAheadJob?.cancel()
+        val q = query.trim()
+        if (q.length < 3) {
+            _ui.update { it.copy(searchResults = emptyList(), searching = false) }
+            return
+        }
+        if (!hasInternet()) return
+        typeAheadJob = viewModelScope.launch {
+            delay(650) // wait for a pause in typing before hitting the network
+            _ui.update { it.copy(searching = true) }
+            val results = runCatching { Nominatim.search(q, currentLang()) }.getOrDefault(emptyList())
+            _ui.update { it.copy(searching = false, searchResults = results) }
         }
     }
 

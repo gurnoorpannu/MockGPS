@@ -62,6 +62,29 @@ class DevOptionsControllerTest {
     }
 
     @Test
+    fun setEnabled_togglesDevOptionsAndUsbDebuggingTogether() {
+        val adb = DevOptionsController.ADB_KEY
+        val fake = FakeGlobalSettings(mapOf(key to 1, adb to 1))
+        val controller = DevOptionsController(fake)
+
+        controller.setEnabled(false)
+        assertEquals(0, fake.values[key])
+        assertEquals(0, fake.values[adb])
+        assertFalse(controller.isVisibleToOtherApps())
+
+        controller.setEnabled(true)
+        assertEquals(1, fake.values[key])
+        assertEquals(1, fake.values[adb])
+    }
+
+    @Test
+    fun isVisibleToOtherApps_trueWhenOnlyUsbDebuggingIsOn() {
+        // The SBI YONO case: Developer options hidden, but USB debugging still on.
+        val fake = FakeGlobalSettings(mapOf(key to 0, DevOptionsController.ADB_KEY to 1))
+        assertTrue(DevOptionsController(fake).isVisibleToOtherApps())
+    }
+
+    @Test
     fun fullCycle_leavesDevOptionsAsWeFoundIt() {
         // Start off. We enable it, then on stop we must put it back off.
         val fake = FakeGlobalSettings()

@@ -98,4 +98,6 @@
     <string name="set_hint">Move the map to pick a spot</string>
     <string name="change_short">Change</string>
     <string name="stop_short">Stop</string>
+    <string name="dev_options_label">Developer options</string>
+    <string name="dev_options_hint">Keep OFF so banking apps work</string>
 </resources>

@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -33,6 +34,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -64,6 +66,9 @@ private fun AppRoot() {
     val state by vm.ui.collectAsStateWithLifecycle()
     val context = LocalContext.current
     var showHelp by rememberSaveable { mutableStateOf(false) }
+    androidx.lifecycle.compose.LifecycleEventEffect(androidx.lifecycle.Lifecycle.Event.ON_RESUME) {
+        vm.refreshSetup()
+    }
 
     val notifLauncher = androidx.activity.compose.rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission(),
@@ -110,8 +115,10 @@ private fun AppRoot() {
             else -> HomeScreen(
                 state = state,
                 onToggleLanguage = vm::toggleLanguage,
+                onToggleDevOptions = vm::toggleDevOptions,
                 onHelp = { showHelp = true },
                 onSearch = vm::search,
+                onQueryChanged = vm::onQueryChanged,
                 onSelectResult = vm::selectResult,
                 onCenterChanged = vm::onCenterChanged,
                 onSelectSaved = vm::selectSaved,
@@ -123,27 +130,32 @@ private fun AppRoot() {
             )
         }
 
-        // Big, few-second feedback message (not a tiny toast).
+        // Brief feedback message, floated near the top so it never covers the buttons.
         state.message?.let { msg ->
             LaunchedEffect(msg) {
-                delay(4000)
+                delay(3000)
                 vm.dismissMessage()
             }
-            Card(
+            Box(
                 modifier = Modifier
-                    .align(Alignment.BottomCenter)
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                colors = CardDefaults.cardColors(
-                    containerColor = if (msg.isError) Color(0xFF6A1B1B) else Color(0xFF14361F),
-                    contentColor = Color.White,
-                ),
+                    .align(Alignment.TopCenter)
+                    .statusBarsPadding()
+                    .padding(top = 76.dp, start = 20.dp, end = 20.dp),
             ) {
-                Text(
-                    text = if (msg.arg != null) stringResource(msg.resId, msg.arg) else stringResource(msg.resId),
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(18.dp),
-                )
+                Card(
+                    colors = CardDefaults.cardColors(
+                        containerColor = if (msg.isError) Color(0xFF6A1B1B) else Color(0xFF14361F),
+                        contentColor = Color.White,
+                    ),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+                ) {
+                    Text(
+                        text = if (msg.arg != null) stringResource(msg.resId, msg.arg) else stringResource(msg.resId),
+                        fontSize = 15.sp,
+                        lineHeight = 21.sp,
+                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp),
+                    )
+                }
             }
         }
     }

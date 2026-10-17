@@ -84,4 +84,6 @@
     <string name="set_hint">ਨਕਸ਼ਾ ਹਿਲਾ ਕੇ ਜਗ੍ਹਾ ਚੁਣੋ</string>
     <string name="change_short">ਬਦਲੋ</string>
     <string name="stop_short">ਬੰਦ</string>
+    <string name="dev_options_label">ਡਿਵੈਲਪਰ ਆਪਸ਼ਨ</string>
+    <string name="dev_options_hint">ਬੈਂਕ ਐਪਾਂ ਚੱਲਣ ਲਈ ਬੰਦ ਰੱਖੋ</string>
 </resources>
