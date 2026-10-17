@@ -221,7 +221,6 @@ fun HomeScreen(
             onStop = onStop,
             onSave = { showSaveDialog = true },
             onPlaces = { showPlaces = true },
-            onHelp = onHelp,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
                 .navigationBarsPadding()
@@ -260,7 +259,6 @@ private fun BottomCard(
     onStop: () -> Unit,
     onSave: () -> Unit,
     onPlaces: () -> Unit,
-    onHelp: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Card(
@@ -301,7 +299,6 @@ private fun BottomCard(
             ) {
                 Chip(stringResource(R.string.save), onSave, Modifier.weight(1f), enabled = state.selected != null)
                 Chip(stringResource(R.string.saved_short), onPlaces, Modifier.weight(1f))
-                Chip(stringResource(R.string.help), onHelp, Modifier.weight(1f))
             }
         }
     }
