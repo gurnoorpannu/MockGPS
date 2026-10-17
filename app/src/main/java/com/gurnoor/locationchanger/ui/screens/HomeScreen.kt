@@ -13,10 +13,12 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -129,39 +131,45 @@ fun HomeScreen(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 Surface(
-                    modifier = Modifier.weight(1f).height(52.dp),
-                    shape = RoundedCornerShape(26.dp),
+                    modifier = Modifier.weight(1f).height(56.dp),
+                    shape = RoundedCornerShape(28.dp),
                     color = MaterialTheme.colorScheme.surface,
                     shadowElevation = 3.dp,
                 ) {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(start = 14.dp, end = 6.dp),
+                        modifier = Modifier.fillMaxSize().padding(start = 16.dp, end = 10.dp),
                     ) {
                         Text("🔎", fontSize = 16.sp)
-                        TextField(
+                        Spacer(Modifier.size(10.dp))
+                        BasicTextField(
                             value = query,
                             onValueChange = { query = it },
-                            placeholder = {
-                                Text(
-                                    stringResource(R.string.search_hint),
-                                    fontSize = 17.sp,
-                                    maxLines = 1,
-                                )
-                            },
                             singleLine = true,
-                            textStyle = MaterialTheme.typography.bodyMedium.copy(fontSize = 17.sp),
-                            colors = TextFieldDefaults.colors(
-                                focusedContainerColor = Color.Transparent,
-                                unfocusedContainerColor = Color.Transparent,
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent,
+                            textStyle = androidx.compose.ui.text.TextStyle(
+                                fontSize = 17.sp,
+                                lineHeight = 22.sp,
+                                color = MaterialTheme.colorScheme.onSurface,
                             ),
+                            cursorBrush = androidx.compose.ui.graphics.SolidColor(MaterialTheme.colorScheme.primary),
                             keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                             keyboardActions = KeyboardActions(onSearch = {
                                 keyboard?.hide(); onSearch(query)
                             }),
                             modifier = Modifier.weight(1f),
+                            decorationBox = { inner ->
+                                Box(contentAlignment = Alignment.CenterStart) {
+                                    if (query.isEmpty()) {
+                                        Text(
+                                            text = stringResource(R.string.search_hint),
+                                            fontSize = 17.sp,
+                                            maxLines = 1,
+                                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                        )
+                                    }
+                                    inner()
+                                }
+                            },
                         )
                         if (state.searching) {
                             CircularProgressIndicator(

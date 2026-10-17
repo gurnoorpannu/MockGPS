@@ -11,6 +11,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -69,25 +71,27 @@ fun SavedPlacesDialog(
                 Text(stringResource(R.string.no_saved_places), style = MaterialTheme.typography.bodyLarge)
             } else {
                 Column(
-                    modifier = Modifier.heightIn(max = 360.dp).verticalScroll(rememberScrollState()),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.heightIn(max = 380.dp).verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
                 ) {
                     places.forEach { place ->
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        ) {
-                            Text(
-                                text = place.name,
-                                style = MaterialTheme.typography.titleMedium,
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .clickable { onSelect(place) }
-                                    .padding(vertical = 10.dp),
-                            )
-                            TextButton(onClick = { onDelete(place) }) {
-                                Text(stringResource(R.string.delete), style = MaterialTheme.typography.bodyLarge)
+                        OutlinedCard(modifier = Modifier.fillMaxWidth()) {
+                            Row(
+                                modifier = Modifier.fillMaxWidth().padding(start = 14.dp, end = 10.dp, top = 8.dp, bottom = 8.dp),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            ) {
+                                Text(
+                                    text = place.name,
+                                    style = MaterialTheme.typography.titleMedium,
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .clickable { onSelect(place) }
+                                        .padding(vertical = 10.dp),
+                                )
+                                OutlinedButton(onClick = { onDelete(place) }) {
+                                    Text(stringResource(R.string.delete), style = MaterialTheme.typography.bodyMedium)
+                                }
                             }
                         }
                     }
@@ -95,7 +99,7 @@ fun SavedPlacesDialog(
             }
         },
         confirmButton = {
-            TextButton(onClick = onClose) {
+            OutlinedButton(onClick = onClose) {
                 Text(stringResource(R.string.close), style = MaterialTheme.typography.titleMedium)
             }
         },
